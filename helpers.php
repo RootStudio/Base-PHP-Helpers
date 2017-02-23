@@ -10,7 +10,10 @@
 if (!function_exists('public_path')) {
     function public_path($path = '')
     {
-        return $_SERVER['DOCUMENT_ROOT'] . ($path ? '/' . trim($path, '/') : $path);
+        $basePath = realpath(__DIR__ . '/../../../');
+        $userPath = realpath($basePath . ($path ? '/' . trim($path, '/') : $path));
+
+        return $userPath;
     }
 }
 
