@@ -1,4 +1,4 @@
-<?php
+<?php use RootStudio\Base;
 
 /**
  * Return path to document root
