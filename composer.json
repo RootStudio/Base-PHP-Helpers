@@ -1,6 +1,6 @@
 {
-    "name": "rootstudio/base-mix-helper",
-    "description": "Mix standalone function for versioning assets outside of Laravel",
+    "name": "rootstudio/base-php-helpers",
+    "description": "PHP Helper functions for building sites using Base 5",
     "type": "library",
     "license": "none",
     "authors": [
@@ -10,9 +10,16 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "nesbot/carbon": "^1.22",
+        "danielstjules/stringy": "^2.3"
     },
     "autoload": {
-        "files": ["mix.php"]
+        "psr-4": {
+            "RootStudio\\": "src/"
+        },
+        "files": [
+            "helpers.php"
+        ]
     }
 }
