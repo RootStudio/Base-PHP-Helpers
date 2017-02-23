@@ -80,3 +80,32 @@ Variables can also be checked with:
 **Perch**
 
 Migrating a static site to Perch is simply a matter of replacing `base_` with `perch_` on each of the above functions. This is deliberate to reduce the time spent converting files to use Perch's template system.
+
+## Included Packages
+Included are useful libraries for handling strings and dates:
+
+### Carbon
+
+Date and time manipulations made easy:
+
+```php
+use Carbon\Carbon;
+
+Carbon::now()->addMonths(2)->format('d/m/Y');
+```
+
+View Documentation: [http://carbon.nesbot.com/docs/](http://carbon.nesbot.com/docs/)
+
+### Stringy
+
+Advanced string manipulation and utilities. Makes checking for strings and modifying format very simple:
+
+```php
+use Stringy\Stringy as Stringy;
+
+if(Stringy::create('Tom Bradley ordered 6 Products')->contains('Tom Bradley')) {
+	echo 'Alert Lydia!';
+}
+```
+
+View Documentation: [https://github.com/danielstjules/Stringy](https://github.com/danielstjules/Stringy)
