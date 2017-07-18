@@ -142,3 +142,18 @@ if (!function_exists('base_layout_has')) {
         return false;
     }
 }
+
+/**
+ * Returns a new faker instance for mocking content
+ *
+ * @return Faker\Generator
+ */
+if(!function_exists('base_faker_factory')) {
+    function base_faker_factory() {
+        if(!class_exists('Faker\Factory')) {
+            throw new Exception('Faker library is not installed - are you running in production?');
+        }
+
+        return Faker\Factory::create();
+    }
+}

@@ -21,5 +21,8 @@
         "files": [
             "helpers.php"
         ]
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.6"
     }
 }
