@@ -12,7 +12,8 @@
     "require": {
         "php": ">=5.4.0",
         "nesbot/carbon": "^1.22",
-        "danielstjules/stringy": "^2.3"
+        "danielstjules/stringy": "^2.3",
+        "fzaninotto/faker": "^1.6"
     },
     "autoload": {
         "psr-4": {
@@ -21,8 +22,5 @@
         "files": [
             "helpers.php"
         ]
-    },
-    "require-dev": {
-        "fzaninotto/faker": "^1.6"
     }
 }
