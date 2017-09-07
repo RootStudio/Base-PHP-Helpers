@@ -9,94 +9,65 @@
 class Base
 {
     /**
-     * Singleton instance
+     * Root directory path
      *
-     * @var Base;
+     * @var string
      */
-    static protected $instance;
+    protected $basePath;
 
     /**
-     * Set layout variables
+     * Base constructor.
      *
-     * @var array
+     * @param null|string $basePath
      */
-    private $layoutVars = [];
-
-    /**
-     * Depth of layout calls
-     *
-     * @var int
-     */
-    private $layoutDepth = 1;
-
-    /**
-     * Return instance of class
-     *
-     * @return Base
-     */
-    public static function fetch()
+    public function __construct($basePath = null)
     {
-        if (!isset(self::$instance)) {
-            $c = __CLASS__;
-            self::$instance = new $c;
-        }
-
-        return self::$instance;
-    }
-
-    /**
-     * Set layout variables
-     *
-     * @param array $data
-     */
-    public function setLayoutVars(array $data)
-    {
-        if ($this->layoutDepth > 1 && is_array($data)) {
-            $this->layoutVars = array_merge($this->layoutVars, $data);
-        } else {
-            $this->layoutVars = $data;
+        if ($basePath) {
+            $this->setBasePath($basePath);
         }
     }
 
     /**
-     * Return layout variables
+     * Set a the root directory path
      *
-     * @return array
+     * @param $basePath
+     *
+     * @return $this
      */
-    public function getLayoutVars()
+    public function setBasePath($basePath)
     {
-        return $this->layoutVars;
+        $this->basePath = rtrim($basePath, '\/');
+
+        return $this;
     }
 
     /**
-     * Return single variable by key
+     * Return path to root directory
      *
-     * @param $key
-     *
-     * @return mixed|string
+     * @return string
      */
-    public function getLayoutVar($key)
+    public function getBasePath()
     {
-        if (isset($this->layoutVars[$key])) {
-            return $this->layoutVars[$key];
-        }
-
-        return '';
+        return $this->basePath;
     }
 
     /**
-     * Increase layout call depth
+     * Return path to public directory
+     *
+     * @return string
      */
-    public function incrementLayoutDepth()
+    public function getPublicPath()
     {
-        $this->layoutDepth++;
+        return $this->getBasePath() . DIRECTORY_SEPARATOR . 'public';
     }
 
     /**
-     * Decrease layout call depth
+     * Return path to layout directory
+     *
+     * @return string
      */
-    public function decrementLayoutDepth()
+    public function getLayoutPath()
     {
-        $this->layoutDepth--;
+        return $this->getPublicPath() . DIRECTORY_SEPARATOR . 'layouts';
     }
 }

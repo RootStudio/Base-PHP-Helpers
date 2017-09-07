@@ -1,4 +1,7 @@
-<?php use RootStudio\Base;
+<?php
+
+use RootStudio\Base;
+use RootStudio\BaseLayout;
 
 /**
  * Return path to document root
@@ -10,8 +13,9 @@
 if (!function_exists('base_public_path')) {
     function base_public_path($path = '')
     {
-        $basePath = realpath(__DIR__ . '/../../../');
-        $userPath = realpath($basePath . ($path ? '/' . trim($path, '/') : $path));
+        $Base = new Base(realpath(__DIR__ . '/../../../'));
+
+        $userPath = $Base->getPublicPath() . ($path ? '/' . trim($path, '/') : $path);
 
         return $userPath;
     }
@@ -74,8 +78,8 @@ if (!function_exists('base_asset')) {
 if (!function_exists('base_layout')) {
     function base_layout($file, array $data = [], $return = false)
     {
-        $Base = Base::fetch();
-        $Base->setLayoutVars($data);
+        $BaseLayout = BaseLayout::fetch();
+        $BaseLayout->setLayoutVars($data);
 
         $path = base_public_path('layouts/' . ltrim($file, '/') . '.php');
 
@@ -88,11 +92,11 @@ if (!function_exists('base_layout')) {
             ob_start();
         }
 
-        $Base->incrementLayoutDepth();
+        $BaseLayout->incrementLayoutDepth();
 
         include $path;
 
-        $Base->decrementLayoutDepth();
+        $BaseLayout->decrementLayoutDepth();
 
         if ($return) {
             return ob_get_clean();
@@ -113,9 +117,9 @@ if (!function_exists('base_layout')) {
 if (!function_exists('base_layout_var')) {
     function base_layout_var($key, $return = false)
     {
-        $Base = Base::fetch();
+        $BaseLayout = BaseLayout::fetch();
 
-        $value = $Base->getLayoutVar($key);
+        $value = $BaseLayout->getLayoutVar($key);
 
         if ($return) return $value;
 
@@ -133,9 +137,9 @@ if (!function_exists('base_layout_var')) {
 if (!function_exists('base_layout_has')) {
     function base_layout_has($key)
     {
-        $Base = Base::fetch();
+        $BaseLayout = BaseLayout::fetch();
 
-        $value = $Base->getLayoutVar($key);
+        $value = $BaseLayout->getLayoutVar($key);
 
         if ($value) return true;
 

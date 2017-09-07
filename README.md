@@ -1,6 +1,6 @@
-# Base-PHP-Helpers
+# BaseLayout-PHP-Helpers
 
-PHP Helper functions for building sites using Base 5
+PHP Helper functions for building sites using BaseLayout 5
 
 ## Installation
 
@@ -10,7 +10,7 @@ Add the following to your `composer.json` file:
 "repositories": [
     {
         "type": "git",
-        "url": "git@github.com:RootStudio/Base-PHP-Helpers.git"
+        "url": "git@github.com:RootStudio/BaseLayout-PHP-Helpers.git"
     }
 ],
 "require": {
@@ -20,7 +20,7 @@ Add the following to your `composer.json` file:
 
 ## Features
 
-This package includes PHP functions that streamline building sites using the Base 5 boilerplate.
+This package includes PHP functions that streamline building sites using the BaseLayout 5 boilerplate.
 
 * `mix()` and `public_path()` functions for asset management
 * API compatibility with `perch_layout_*` functions
@@ -37,7 +37,7 @@ The mix helper should be used to call in static assets compiled with Laravel Mix
 <head>
     <meta charset="utf-8">
 
-    <title>Base NG</title>
+    <title>BaseLayout NG</title>
 
     <link rel="stylesheet" href="<?php echo mix('assets/css/global.css'); ?>">
 </head>
