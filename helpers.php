@@ -7,8 +7,8 @@
  *
  * @return string
  */
-if (!function_exists('public_path')) {
-    function public_path($path = '')
+if (!function_exists('base_public_path')) {
+    function base_public_path($path = '')
     {
         $basePath = realpath(__DIR__ . '/../../../');
         $userPath = realpath($basePath . ($path ? '/' . trim($path, '/') : $path));
@@ -26,8 +26,8 @@ if (!function_exists('public_path')) {
  * @return string
  * @throws Exception
  */
-if (!function_exists('mix')) {
-    function mix($path, $manifestDirectory = '')
+if (!function_exists('base_asset')) {
+    function base_asset($path, $manifestDirectory = '')
     {
         static $manifest;
 
@@ -38,7 +38,7 @@ if (!function_exists('mix')) {
         }
 
         if (!$manifest) {
-            if (!file_exists($manifestPath = public_path($manifestDirectory . '/mix-manifest.json'))) {
+            if (!file_exists($manifestPath = base_public_path($manifestDirectory . '/mix-manifest.json'))) {
                 throw new Exception('The Mix manifest does not exist.');
             }
 
@@ -52,7 +52,7 @@ if (!function_exists('mix')) {
             );
         }
 
-        if (file_exists(public_path($manifestDirectory . '/hot'))) {
+        if (file_exists(base_public_path($manifestDirectory . '/hot'))) {
             return "http://localhost:8080{$manifest[$path]}";
         }
 
@@ -77,7 +77,7 @@ if (!function_exists('base_layout')) {
         $Base = Base::fetch();
         $Base->setLayoutVars($data);
 
-        $path = public_path('layouts/' . ltrim($file, '/') . '.php');
+        $path = base_public_path('layouts/' . ltrim($file, '/') . '.php');
 
         if (!file_exists($path)) {
             throw new Exception("Unable to locate layout file: {$path}. Please check the layout exists");
@@ -148,12 +148,25 @@ if (!function_exists('base_layout_has')) {
  *
  * @return Faker\Generator
  */
-if(!function_exists('base_faker_factory')) {
-    function base_faker_factory() {
-        if(!class_exists('Faker\Factory')) {
+if (!function_exists('base_faker_factory')) {
+    function base_faker_factory()
+    {
+        if (!class_exists('Faker\Factory')) {
             throw new Exception('Faker library is not available.');
         }
 
         return Faker\Factory::create();
+    }
+}
+
+/**
+ * Returns the full HTTP host of the current request
+ *
+ * @return string
+ */
+if (!function_exists('base_http_host')) {
+    function base_http_host()
+    {
+        return 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? 's' : '') . '://' . $_SERVER['HTTP_HOST'];
     }
 }
