@@ -78,10 +78,12 @@ if (!function_exists('base_asset')) {
 if (!function_exists('base_layout')) {
     function base_layout($file, array $data = [], $return = false)
     {
+        $Base = new Base(realpath(__DIR__ . '/../../../'));
+
         $BaseLayout = BaseLayout::fetch();
         $BaseLayout->setLayoutVars($data);
 
-        $path = base_public_path('layouts/' . ltrim($file, '/') . '.php');
+        $path = $Base->getLayoutPath() . DIRECTORY_SEPARATOR . ltrim($file, '/') . '.php';
 
         if (!file_exists($path)) {
             throw new Exception("Unable to locate layout file: {$path}. Please check the layout exists");
