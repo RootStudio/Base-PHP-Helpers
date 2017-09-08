@@ -13,7 +13,7 @@ use RootStudio\BaseLayout;
 if (!function_exists('base_public_path')) {
     function base_public_path(string $path = ''): string
     {
-        $Base = new Base(realpath(__DIR__ . '/../../../'));
+        $Base = new Base(realpath(__DIR__ . '/../../../../'));
 
         $userPath = $Base->getPublicPath() . ($path ? '/' . trim($path, '/') : $path);
 
@@ -78,7 +78,7 @@ if (!function_exists('base_asset')) {
 if (!function_exists('base_layout')) {
     function base_layout(string $file, array $data = [], bool $return = false)
     {
-        $Base = new Base(realpath(__DIR__ . '/../../../'));
+        $Base = new Base(realpath(__DIR__ . '/../../../../'));
 
         $BaseLayout = BaseLayout::fetch();
         $BaseLayout->setLayoutVars($data);
