@@ -11,7 +11,7 @@ use RootStudio\BaseLayout;
  * @return string
  */
 if (!function_exists('base_public_path')) {
-    function base_public_path($path = '')
+    function base_public_path(string $path = ''): string
     {
         $Base = new Base(realpath(__DIR__ . '/../../../'));
 
@@ -31,7 +31,7 @@ if (!function_exists('base_public_path')) {
  * @throws Exception
  */
 if (!function_exists('base_asset')) {
-    function base_asset($path, $manifestDirectory = '')
+    function base_asset(string $path, string $manifestDirectory = ''): string
     {
         static $manifest;
 
@@ -76,7 +76,7 @@ if (!function_exists('base_asset')) {
  * @throws Exception
  */
 if (!function_exists('base_layout')) {
-    function base_layout($file, array $data = [], $return = false)
+    function base_layout(string $file, array $data = [], bool $return = false)
     {
         $Base = new Base(realpath(__DIR__ . '/../../../'));
 
@@ -117,7 +117,7 @@ if (!function_exists('base_layout')) {
  * @return string
  */
 if (!function_exists('base_layout_var')) {
-    function base_layout_var($key, $return = false)
+    function base_layout_var(string $key, bool $return = false)
     {
         $BaseLayout = BaseLayout::fetch();
 
@@ -137,7 +137,7 @@ if (!function_exists('base_layout_var')) {
  * @return bool
  */
 if (!function_exists('base_layout_has')) {
-    function base_layout_has($key)
+    function base_layout_has(string $key): bool
     {
         $BaseLayout = BaseLayout::fetch();
 
@@ -171,7 +171,7 @@ if (!function_exists('base_faker_factory')) {
  * @return string
  */
 if (!function_exists('base_http_host')) {
-    function base_http_host()
+    function base_http_host(): string
     {
         return 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? 's' : '') . '://' . $_SERVER['HTTP_HOST'];
     }

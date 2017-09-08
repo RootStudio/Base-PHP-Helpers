@@ -1,6 +1,6 @@
 # BaseLayout-PHP-Helpers
 
-PHP Helper functions for building sites using BaseLayout 5
+PHP Helper functions for building sites using Base 5.
 
 ## Installation
 
@@ -14,7 +14,15 @@ Add the following to your `composer.json` file:
     }
 ],
 "require": {
-  "rootstudio/base-php-helpers": "^1.1",
+  "rootstudio/base-php-helpers": "^2.0",
+}
+```
+
+The v2.x version of the library requires PHP 7 or higher. For versions below this change the require statement to:
+
+```json
+"require": {
+  "rootstudio/base-php-helpers": "^1.2",
 }
 ```
 
@@ -22,11 +30,11 @@ Add the following to your `composer.json` file:
 
 This package includes PHP functions that streamline building sites using the BaseLayout 5 boilerplate.
 
-* `mix()` and `public_path()` functions for asset management
+* `base_asset()` and `base_public_path()` functions for asset management
 * API compatibility with `perch_layout_*` functions
 * Additional PHP libraries for working with Strings and Dates.
 
-### Mix
+### Assets
 
 The mix helper should be used to call in static assets compiled with Laravel Mix. For example:
 
@@ -39,15 +47,15 @@ The mix helper should be used to call in static assets compiled with Laravel Mix
 
     <title>BaseLayout NG</title>
 
-    <link rel="stylesheet" href="<?php echo mix('assets/css/global.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_asset('assets/css/global.css'); ?>">
 </head>
 
 <body>
     <!-- Page Content... -->
 
-    <script src="<?php echo mix('assets/js/manifest.js'); ?>"></script>
-    <script src="<?php echo mix('assets/js/vendor.js'); ?>"></script>
-    <script src="<?php echo mix('assets/js/app.js'); ?>"></script>
+    <script src="<?php echo base_asset('assets/js/manifest.js'); ?>"></script>
+    <script src="<?php echo base_asset('assets/js/vendor.js'); ?>"></script>
+    <script src="<?php echo base_asset('assets/js/app.js'); ?>"></script>
 </body>
 </html>
 ```
@@ -75,6 +83,30 @@ Variables can also be checked with:
 
 ```
 <?php base_layout_has('class'); ?>
+```
+
+### Mock Data
+
+The Faker library allows you to generate random content for a wide variety of patterns. For a full list see [the documention](https://github.com/fzaninotto/Faker#formatters).
+
+```php
+$faker = base_faker_factory();
+
+echo $faker->email;
+```
+
+If you only need a single use you can shorthand the above to:
+
+```php
+echo base_faker_factory()->email;
+```
+
+### URLs
+
+The fully qualified domain name can be returned using `base_http_host()`. The function will automatically add the correct protocol if SSL is enabled:
+
+```php
+<link rel="icon" sizes="152x152" href="<?php echo base_http_host(); ?>/images/meta/touch-icon.png">
 ```
 
 **Perch**
@@ -109,3 +141,13 @@ if(Stringy::create('Tom Bradley ordered 6 Products')->contains('Tom Bradley')) {
 ```
 
 View Documentation: [https://github.com/danielstjules/Stringy](https://github.com/danielstjules/Stringy)
+
+### Faker
+
+Generates mock content for for a wide variety of patterns including names, addresses, emails, urls and even images.
+
+```php
+$faker = Faker\Factory::create();
+echo $faker->sentence;
+```
+View Documentation: [https://github.com/fzaninotto/Faker](https://github.com/fzaninotto/Faker)

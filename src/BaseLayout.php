@@ -63,7 +63,7 @@ class BaseLayout
      *
      * @return array
      */
-    public function getLayoutVars()
+    public function getLayoutVars(): array
     {
         return $this->layoutVars;
     }
@@ -75,10 +75,10 @@ class BaseLayout
      *
      * @return mixed|string
      */
-    public function getLayoutVar($key)
+    public function getLayoutVar(string $key)
     {
-        if (isset($this->layoutVars[$key])) {
-            return $this->layoutVars[$key];
+        if (isset($this->getLayoutVars()[$key])) {
+            return $this->getLayoutVars()[$key];
         }
 
         return '';

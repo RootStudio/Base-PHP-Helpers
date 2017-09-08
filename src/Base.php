@@ -34,7 +34,7 @@ class Base
      *
      * @return $this
      */
-    public function setBasePath($basePath)
+    public function setBasePath(string $basePath)
     {
         $this->basePath = rtrim($basePath, '\/');
 
@@ -46,7 +46,7 @@ class Base
      *
      * @return string
      */
-    public function getBasePath()
+    public function getBasePath(): string
     {
         return $this->basePath;
     }
@@ -56,7 +56,7 @@ class Base
      *
      * @return string
      */
-    public function getPublicPath()
+    public function getPublicPath(): string
     {
         return $this->getBasePath() . DIRECTORY_SEPARATOR . 'public';
     }
@@ -66,7 +66,7 @@ class Base
      *
      * @return string
      */
-    public function getLayoutPath()
+    public function getLayoutPath(): string
     {
         return $this->getPublicPath() . DIRECTORY_SEPARATOR . 'layouts';
     }
