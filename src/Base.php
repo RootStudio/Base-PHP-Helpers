@@ -58,7 +58,11 @@ class Base
      */
     public function getPublicPath(): string
     {
-        return $this->getBasePath() . DIRECTORY_SEPARATOR . 'public';
+        if (!defined('BASE_PUBLIC_DIR')) {
+            define('BASE_PUBLIC_DIR', 'public');
+        }
+
+        return $this->getBasePath() . DIRECTORY_SEPARATOR . BASE_PUBLIC_DIR;
     }
 
     /**
@@ -68,6 +72,10 @@ class Base
      */
     public function getLayoutPath(): string
     {
-        return $this->getPublicPath() . DIRECTORY_SEPARATOR . 'layouts';
+        if (!defined('BASE_LAYOUT_DIR')) {
+            define('BASE_LAYOUT_DIR', 'layouts');
+        }
+
+        return $this->getPublicPath() . DIRECTORY_SEPARATOR . BASE_LAYOUT_DIR;
     }
 }
