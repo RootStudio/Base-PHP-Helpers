@@ -1,4 +1,4 @@
-# BaseLayout-PHP-Helpers
+# Base-PHP-Helpers
 
 PHP Helper functions for building sites using Base 5.
 
@@ -53,7 +53,7 @@ The mix helper should be used to call in static assets compiled with Laravel Mix
 <head>
     <meta charset="utf-8">
 
-    <title>BaseLayout NG</title>
+    <title>Base NG</title>
 
     <link rel="stylesheet" href="<?php echo base_asset('assets/css/global.css'); ?>">
 </head>
