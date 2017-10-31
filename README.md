@@ -14,7 +14,7 @@ Add the following to your `composer.json` file:
     }
 ],
 "require": {
-  "rootstudio/base-php-helpers": "^2.0",
+  "rootstudio/base-php-helpers": "^2.1",
 }
 ```
 
@@ -24,6 +24,14 @@ The v2.x version of the library requires PHP 7 or higher. For versions below thi
 "require": {
   "rootstudio/base-php-helpers": "^1.2",
 }
+```
+
+## Settings
+If you need to modify the public and layout directories you can set the following constants early in your code:
+
+```php
+define('BASE_PUBLIC_DIR', 'public');
+define('BASE_LAYOUT_DIR', 'layouts');
 ```
 
 ## Features
