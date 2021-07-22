@@ -13,7 +13,10 @@ use RootStudio\BaseLayout;
 if (!function_exists('base_public_path')) {
     function base_public_path(string $path = ''): string
     {
-        $Base = new Base(realpath(__DIR__ . '/../../../../'));
+        if (!defined('BASE_PUBLIC_PATH')) {
+            define('BASE_PUBLIC_PATH', '/../../../../');
+        }
+        $Base = new Base(realpath(__DIR__ . BASE_PUBLIC_PATH));
 
         $userPath = $Base->getPublicPath() . ($path ? '/' . trim($path, '/') : $path);
 
