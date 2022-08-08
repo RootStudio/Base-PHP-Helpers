@@ -9,7 +9,7 @@ class HelpersTest extends TestCase
     {
         $result = base_public_path();
 
-        $this->assertInternalType('string', $result);
+        $this->assertIsString( $result);
         $this->assertEquals(__DIR__, $result);
     }
 
@@ -20,7 +20,7 @@ class HelpersTest extends TestCase
     {
         $result = base_public_path('/my_directory');
 
-        $this->assertInternalType('string', $result);
+        $this->assertIsString($result);
         $this->assertEquals(__DIR__ . '/my_directory', $result);
     }
 
@@ -83,7 +83,7 @@ class HelpersTest extends TestCase
         $this->assertEquals('https://' . $host, $result);
     }
 
-    public function setUp()
+    public function setUp() : void
     {
         $externalMock = Mockery::mock('overload:RootStudio\Base');
         $externalMock->shouldReceive('getPublicPath')->andReturn(__DIR__);
@@ -91,7 +91,7 @@ class HelpersTest extends TestCase
         parent::setUp();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         Mockery::close();
     }
