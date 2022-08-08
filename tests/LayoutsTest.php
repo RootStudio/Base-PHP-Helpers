@@ -162,7 +162,7 @@ class LayoutsTest extends TestCase
         $this->assertEquals('Hello World', $result);
     }
 
-    public function setUp()
+    public function setUp() : void
     {
         $externalMock = Mockery::mock('overload:RootStudio\Base');
         $externalMock->shouldReceive('getLayoutPath')->once()->andReturn(__DIR__ . '/stubs');
@@ -170,7 +170,7 @@ class LayoutsTest extends TestCase
         parent::setUp();
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         Mockery::close();
     }
