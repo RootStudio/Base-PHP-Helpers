@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0 || >=8.0",
-        "nesbot/carbon": "^1.22",
+        "php": ">=8.0",
+        "nesbot/carbon": "^2.6",
         "danielstjules/stringy": "^3.0"
     },
     "autoload": {
